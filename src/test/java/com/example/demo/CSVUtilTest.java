@@ -41,7 +41,6 @@ public class CSVUtilTest {
         assert listFilter.size() == 322;
     }
 
-
     @Test
     void reactive_filtrarJugadoresMayoresA35(){
         List<Player> list = CsvUtilFile.getPlayers();
@@ -62,7 +61,4 @@ public class CSVUtilTest {
 
         assert listFilter.block().size() == 322;
     }
-
-
-
 }

@@ -1,6 +1,12 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.annotation.JsonTypeId;
+
+import java.lang.annotation.Documented;
+
+@Documented("Reactive")
 public class Player {
+    @Id
     public int id;
     public String name;
     public int age;
