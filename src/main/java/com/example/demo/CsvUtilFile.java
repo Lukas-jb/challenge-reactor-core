@@ -10,14 +10,27 @@ import java.util.List;
 import java.util.Optional;
 
 public class CsvUtilFile {
-    private CsvUtilFile(){}
+    private CsvUtilFile() {
+    }
 
-    public static List<Player> getPlayers(){
+    public PlayerRepository playerRepository;
+
+    public CsvUtilFile(PlayerRepository playerRepository) {
+        this.playerRepository = playerRepository;
+    }
+
+    public List<Player> getPlayers() {
+        List<Player> list = playerRepository.findAll();
+        return list;
+    }
+
+
+  /*  public static List<Player> getPlayers(){
         var uri =  CsvUtilFile.class.getClassLoader().getResource("data.csv");
         List<Player> list = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(uri.getFile()))) {
             List<String[]> registers = reader.readAll();
-            registers.forEach(strings -> list.add(new Player(
+            registers.forEach(strings -> list.add(new player(
                     Integer.parseInt(strings[0].trim()),
                     strings[1],
                     Integer.parseInt(Optional.of(strings[2].trim()).filter(h -> !h.isBlank()).orElse("0")),
@@ -32,6 +45,6 @@ public class CsvUtilFile {
 
         } catch (IOException | CsvException e) {
             throw new IllegalArgumentException(e.getMessage());
-        }
-    }
+        }*/
 }
+

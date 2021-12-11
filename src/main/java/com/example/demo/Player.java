@@ -1,13 +1,13 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.annotation.Documented;
-
-@Documented("Reactive")
+@Document("players")
 public class Player {
     @Id
-    public int id;
+    public String _id;
+    public int idp;
     public String name;
     public int age;
     public String icon;
@@ -16,12 +16,13 @@ public class Player {
     public int games;
     public String club;
 
-    public Player(){
+    public Player() {
 
     }
 
-    public Player(int id, String name, int age, String icon, String national, int winners, int games, String club) {
-        this.id = id;
+    public Player(String id, int idp, String name, int age, String icon, String national, int winners, int games, String club) {
+        this._id = id;
+        this.idp = idp;
         this.name = name;
         this.age = age;
         this.icon = icon;
@@ -31,12 +32,20 @@ public class Player {
         this.club = club;
     }
 
-    public int getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public int getIdp() {
+        return idp;
+    }
+
+    public void setIdp(int idp) {
+        this.idp = idp;
     }
 
     public String getName() {
