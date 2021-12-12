@@ -1,4 +1,11 @@
-# Challenge reactor-core
+# Anotaciones
+
+ Utilizar la base de datos ubicada en challenge-reactor-core\build\resources\test
+
+
+
+
+## Challenge reactor-core
 
 Dentro del código se encutra un ejemplo para aplicar reactividad con Spring Boot, se cuenta con una herramienta utilitaria para leer archivos CSV, lo que se buscar es aplicar los operadores reactivas para leer este archivo, y se reta para hacer este procedimiento en mongodb.
 
