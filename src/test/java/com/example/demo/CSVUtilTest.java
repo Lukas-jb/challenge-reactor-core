@@ -90,7 +90,27 @@ public class CSVUtilTest {
         listFilter.block().forEach((equipo, players) -> {
             System.out.println(equipo);
             players.stream().forEach(p -> System.out.println(p.name + "-" + p.age));
-            assert players.size()==4;
+            assert players.size() == 4;
+        });
+    }
+
+    @Test
+    void reactiveFiltrarPorNacionalidadyPuesto() {
+        List<Player> list = csvUtilFile.getPlayers();
+        Flux<Player> listFlux = Flux.fromStream(list.parallelStream()).cache();
+        Mono<Map<String, Collection<Player>>> listFilter = listFlux
+                .filter(player -> player.age == 30)// se hace para no imprimir toda la lista
+                .map(player -> {
+                    player.name = player.name.toUpperCase();
+                    return player;
+                })
+                .sort((p, w) -> w.winners - p.winners)
+                .collectMultimap(Player::getNational);
+
+        listFilter.block().forEach((national, players) -> {
+            System.out.println("\n" + national);
+            players.stream().forEach(p ->
+                    System.out.println(p.name + "- Partidos ganados; " + p.winners));
         });
     }
 }
